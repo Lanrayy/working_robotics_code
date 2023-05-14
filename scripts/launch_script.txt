@@ -1,0 +1,50 @@
+world 1
+roslaunch simulated_localisation.launch map_file:=$HOME/catkin_ws/src/group_project/world_manager/worlds/world1/map/project_map.yaml 2> >(grep -v TF_REPEATED_DATA buffer_core)
+
+world 2
+roslaunch simulated_localisation.launch map_file:=$HOME/catkin_ws/src/group_project/world_manager/worlds/world2/map/project_map.yaml 2> >(grep -v TF_REPEATED_DATA buffer_core)
+
+WORLD 1
+1. export TURTLEBOT_GAZEBO_WORLD_FILE=$HOME/catkin_ws/src/group_project/world/project.world
+2. roslaunch turtlebot_gazebo turtlebot_world.launch
+3. roscore
+4. cd $HOME/catkin_ws/src/group_project/launch
+5. roslaunch simulated_localisation.launch map_file:=$HOME/catkin_ws/src/group_project/world_manager/worlds/world1/map/project_map.yaml 2> >(grep -v TF_REPEATED_DATA buffer_core)
+6. roslaunch turtlebot_rviz_launchers view_navigation.launch
+7. rosrun group_project main.py
+
+
+WORLD 2
+1. export TURTLEBOT_GAZEBO_WORLD_FILE=$HOME/catkin_ws//src/group_project/world_manager/worlds/world2/project.world
+2. roslaunch turtlebot_gazebo turtlebot_world.launch
+3. roscore
+4. cd $HOME/catkin_ws/src/group_project/launch
+5. roslaunch simulated_localisation.launch map_file:=$HOME/catkin_ws/src/group_project/world_manager/worlds/world2/map/project_map.yaml 2> >(grep -v TF_REPEATED_DATA buffer_core)
+6. roslaunch turtlebot_rviz_launchers view_navigation.launch
+7. rosrun group_project main.py
+
+<package format="3">
+  <name>entering_green_room</name>
+  <version>0.0.0</version>
+  <description>The entering_green_room package</description>
+  <maintainer email="rafael@todo.todo">rafael</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rospy</exec_depend>
+
+
+  <export>
+  </export>
+</package>
+
+
+#!/usr/bin/env python
+
+from distutils.core import setup
+from catkin_pkg.python_setup import generate_distutils_setup
+
+d = generate_distutils_setup(packages=['entering_green_room'],
+                             package_dir={'': 'scripts'}
+                             )
+
+setup(**d)
